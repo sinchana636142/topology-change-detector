@@ -1,0 +1,107 @@
+## ⚙️ Setup Steps
+
+### 1. Install Mininet
+
+```bash
+sudo apt update
+sudo apt install mininet
+```
+
+---
+
+### 2. Install Dependencies
+
+```bash
+sudo apt install git python3
+```
+
+---
+
+### 3. Download POX
+
+```bash
+git clone https://github.com/noxrepo/pox.git
+cd pox
+```
+
+---
+
+### 4. (Optional) Install Compatible Python Version
+
+POX works best with Python 3.6–3.9:
+
+```bash
+sudo apt install python3.8
+```
+
+---
+
+### 5. Clean Previous Mininet Setup
+
+```bash
+sudo mn -c
+sudo fuser -k 6633/tcp
+```
+
+---
+
+## 🚀 Usage
+
+### Step 1: Start POX Controller
+
+```bash
+cd ~/pox
+./pox.py forwarding.l2_learning topo_detect openflow.discovery
+```
+
+---
+
+### Step 2: Run Custom Topology
+
+```bash
+sudo mn --custom topo.py --topo mytopo --controller remote --mac
+```
+
+---
+
+### Step 3: Test Network Connectivity
+
+```bash
+mininet> pingall
+```
+
+---
+
+### Step 4: Observe Output
+
+* Check terminal running POX
+* You will see logs like:
+
+```bash
+INFO:topo_detect:Traffic: h1 -> h2
+```
+
+👉 This shows traffic and topology behavior.
+
+---
+
+## 🔁 Stopping the Setup
+
+* Exit Mininet:
+
+```bash
+exit
+```
+
+* Stop POX:
+  Press `Ctrl + C`
+
+---
+
+## 💡 Tips
+
+* Always clean Mininet before running new topology
+* Ensure port **6633** is free
+* Run controller before Mininet
+
+---
